@@ -72,19 +72,7 @@ VALUES
     -- 1. `王小明` 購買 `14 堂組合包方案`
     -- 2. `王小明` 購買 `21 堂組合包方案`
     -- 3. `好野人` 購買 `14 堂組合包方案`
-INSERT INTO "CREDIT_PURCHASE" (user_id, credit_package_id, purchased_credits, price_paid)
-SELECT 
-    "USER".id AS user_id,
-    "CREDIT_PACKAGE".id AS credit_package_id,
-    "CREDIT_PACKAGE".credit_amount AS purchased_credits,
-    "CREDIT_PACKAGE".price AS price_paid
-FROM 
-    "USER"
-JOIN "CREDIT_PACKAGE" ON (
-    ("USER".name = '王小明' AND "CREDIT_PACKAGE".name IN ('14 堂組合包方案', '21 堂組合包方案'))
-    OR
-    ("USER".name = '好野人' AND "CREDIT_PACKAGE".name = '14 堂組合包方案')
-);
+
 
 
 
