@@ -65,13 +65,25 @@ INSERT INTO "CREDIT_PACKAGE" (name,price,credit_amount)
 VALUES 
 ('7 堂組合包方案',1400,7),
 ('14 堂組合包方案',2520,14),
-('21 堂組合包方案',4800,21)
+('21 堂組合包方案',4800,21);
 
 
 -- 2-2. 新增：在 `CREDIT_PURCHASE` 資料表，新增三筆資料：（請使用 name 欄位做子查詢）
     -- 1. `王小明` 購買 `14 堂組合包方案`
     -- 2. `王小明` 購買 `21 堂組合包方案`
     -- 3. `好野人` 購買 `14 堂組合包方案`
+SELECT 
+    "USER".id AS user_id,
+    "CREDIT_PACKAGE".id AS credit_package_id,
+    "CREDIT_PACKAGE".credit_amount AS purchased_credits,
+    "CREDIT_PACKAGE".price AS price_paid
+FROM 
+    "USER"
+JOIN "CREDIT_PACKAGE" ON (
+    ("USER".name = '王小明' AND "CREDIT_PACKAGE".name IN ('14 堂組合包方案', '21 堂組合包方案'))
+    OR
+    ("USER".name = '好野人' AND "CREDIT_PACKAGE".name = '14 堂組合包方案')
+);
 
 
 
